@@ -34,14 +34,13 @@ public class VootApplicationTest {
     this.vootService = new OAuth2RestTemplate(details);
   }
 
-	@Test
-	public void members() {
+  @Test
+  public void members() {
     String url = "https://voot.test.surfconext.nl/members/{group_urn}";
     List<Map<String, String>> rawMembers = vootService.getForObject(url, List.class, "urn:collab:group:test.surfteams.nl:nl:surfnet:diensten:bar");
     List<Member> members = rawMembers.stream().map(map -> new Member(map.get("id"), map.get("email"), map.get("name"))).collect(toList());
     assertEquals(7, members.size());
-	}
-
+  }
 
 
 }
